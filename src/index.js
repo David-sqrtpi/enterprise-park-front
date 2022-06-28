@@ -11,6 +11,7 @@ import Invoice from './routes/invoice';
 import Admin from './routes/admin';
 import Buscar from './routes/buscar';
 import Analiticas from './routes/analiticas';
+import Piso from './routes/piso';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,7 +31,17 @@ root.render(
               }
             />
           </Route>
-          <Route path="admin" element={<Admin />} />
+
+          <Route path="admin" element={<Admin />} >
+            <Route path="pisos/:piso" element={<Piso />} />
+            <Route
+              index
+              element={
+                <p>Selecciona un piso</p>
+              }
+            />
+          </Route>
+
           <Route path="buscar" element={<Buscar />} />
           <Route path="analiticas" element={<Analiticas />} />
 
@@ -39,7 +50,7 @@ root.render(
           path="*"
           element={
             <main style={{ padding: "1rem" }}>
-              <p>There's nothing here!</p>
+              <p>Esta página no existe</p>
             </main>
           }
         />
