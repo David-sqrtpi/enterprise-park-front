@@ -12,17 +12,15 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function Oficinas() {
     let navigate = useNavigate();
-    let pisos = [1, 2, 3, 4, 5, 6];
+    let pisos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    //const [searchParams, setSearchParams] = useSearchParams();
+    const [piso, setPiso] = useState(0);
+    const [nit, setNit] = useState("");
 
     const handleChange = (event) => {
         let piso = event.target.value;
-        if (piso !== 0) {
-            setSearchParams({ piso });
-        } else {
-            setSearchParams({});
-        }
+        setPiso(piso);
     };
 
     let oficinas = getOficces();
@@ -41,7 +39,7 @@ export default function Oficinas() {
                         <Select
                             labelId="piso-select-label"
                             id="piso-select"
-                            value={searchParams.get("piso") || "0"}
+                            value={piso}
                             label="Piso"
                             onChange={handleChange}
                         >
@@ -57,24 +55,10 @@ export default function Oficinas() {
                         sx={{ mt: "1rem" }}
                         label="Nit"
                         variant="outlined"
-                        value={searchParams.get("nit") || ""}
+                        value={nit}
                         onChange={(event) => {
                             const nit = event.target.value;
-                            const piso = searchParams.get("piso");
-
-                            if (piso) {
-                                if (nit) {
-                                    setSearchParams({ piso, nit })
-                                } else {
-                                    setSearchParams({ piso })
-                                }
-                            } else {
-                                if (nit) {
-                                    setSearchParams({ nit })
-                                } else {
-                                    setSearchParams({})
-                                }
-                            }
+                            setNit(nit);
                         }}
                     />
 
@@ -93,28 +77,27 @@ export default function Oficinas() {
                         </Grid>
                         {
                             oficinas.filter((oficina) => {
-                                let filter = searchParams.get("piso");
+                                let filter = piso;
                                 if (!filter) return true;
                                 return oficina.piso == filter;
                             }).filter((oficina) => {
-                                const filter = searchParams.get("nit");
+                                let filter = nit;
                                 if (!filter) return true;
-                                const nit = oficina.nit_empresa?.toString();
-                                return nit?.startsWith(filter);
-                            })
-                                .map((oficina, index) => (
-                                    <Grid item xs={3} key={index}>
-                                        <Card sx={{ backgroundColor: "#efefff" }}>
-                                            <CardActionArea onClick={() => { navigate(`${oficina.id}`) }}>
-                                                <CardContent>
-                                                    <h2>Oficina #{oficina.piso}{oficina.n_oficina}</h2>
-                                                    {oficina.nit_empresa ? <p>Empresa nit: {oficina.nit_empresa}</p> : <p>Oficina desocupada</p>}
-                                                    <p>Tamaño: {oficina.size}</p>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-                                    </Grid>
-                                ))
+                                const nit_empresa = oficina.nit_empresa?.toString();
+                                return nit_empresa?.startsWith(filter);
+                            }).map((oficina, index) => (
+                                <Grid item xs={3} key={index}>
+                                    <Card sx={{ backgroundColor: "#efefff" }}>
+                                        <CardActionArea onClick={() => { navigate(`${oficina.id}`) }}>
+                                            <CardContent>
+                                                <h2>Oficina #{oficina.piso}{oficina.n_oficina}</h2>
+                                                {oficina.nit_empresa ? <p>Empresa nit: {oficina.nit_empresa}</p> : <p>Oficina desocupada</p>}
+                                                <p>Tamaño: {oficina.size}</p>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Grid>
+                            ))
                         }
                     </Grid>
 

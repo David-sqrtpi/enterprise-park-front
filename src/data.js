@@ -7722,17 +7722,13 @@ export function getOficces() {
         {
             "id": 960,
             "n_oficina": 4,
-            "nit_empresa": 9600,
             "piso": 78,
-            "nombre_empresa": "Empresa con nit 9600",
             "size": 10
         },
         {
             "id": 961,
             "n_oficina": 11,
-            "nit_empresa": 9610,
             "piso": 8,
-            "nombre_empresa": "Empresa con nit 9610",
             "size": 8
         },
         {
