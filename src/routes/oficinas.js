@@ -8,6 +8,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getOficces } from '../data';
 import { Box, Card, CardActionArea, CardContent, Grid, TextField } from "@mui/material";
 import Admin from './admin';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Oficinas() {
     let navigate = useNavigate();
@@ -79,7 +80,17 @@ export default function Oficinas() {
 
                 </Box>
                 <Box sx={{ flexGrow: 1, borderLeft: "solid 1px", pl: "2rem" }}>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} alignItems="stretch">
+                        <Grid item xs={3}>
+                            <Card sx={{ backgroundColor: "gainsboro", height: "100%" }}>
+                                <CardActionArea onClick={() => { navigate("crear") }} sx={{ height: "100%" }}>
+                                    <CardContent sx={{ textAlign: "center" }}>
+                                        <h2>Crear oficina</h2>
+                                        <AddIcon fontSize={"large"} />
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
                         {
                             oficinas.filter((oficina) => {
                                 let filter = searchParams.get("piso");

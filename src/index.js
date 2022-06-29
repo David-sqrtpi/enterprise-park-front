@@ -44,6 +44,15 @@ root.render(
           <Route path="buscar" element={<Buscar />} />
           <Route path="analiticas" element={<Analiticas />} />
 
+          <Route
+            index
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>Selecciona una opción</p>
+              </main>
+            }
+          />
+
         </Route>
         <Route
           path="*"
