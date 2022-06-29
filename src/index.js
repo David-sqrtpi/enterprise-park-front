@@ -12,6 +12,8 @@ import Admin from './routes/admin';
 import Buscar from './routes/buscar';
 import Analiticas from './routes/analiticas';
 import Piso from './routes/piso';
+import Oficinas from './routes/oficinas';
+import Oficina from './routes/oficina';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,14 +34,11 @@ root.render(
             />
           </Route>
 
-          <Route path="admin" element={<Admin />} >
-            <Route path="pisos/:piso" element={<Piso />} />
-            <Route
-              index
-              element={
-                <p>Selecciona un piso</p>
-              }
-            />
+
+          <Route path="oficinas" element={<Oficinas />}>
+          </Route>
+
+          <Route path="oficinas/:oficina" element={<Oficina />}>
           </Route>
 
           <Route path="buscar" element={<Buscar />} />

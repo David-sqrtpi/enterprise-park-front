@@ -133,7 +133,7 @@ export default function App() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate("/admin") }}>
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate("/oficinas") }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
