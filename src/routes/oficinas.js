@@ -79,7 +79,7 @@ export default function Oficinas() {
                             oficinas.filter((oficina) => {
                                 let filter = piso;
                                 if (!filter) return true;
-                                return oficina.piso == filter;
+                                return oficina.piso === filter;
                             }).filter((oficina) => {
                                 let filter = nit;
                                 if (!filter) return true;
